@@ -1,0 +1,17 @@
+---
+- hosts: localhost
+  gather_facts: no
+  tasks:
+
+    - name: Login to hub.docker.io
+      command: docker login -u <docker_account> -p <dockerhub-password>
+    
+    - name: Remove the local docker images
+      command: docker rmi docker_account/first_docker_image
+      ignore_errors: yes
+    
+    - name: building docker image
+      command: docker build -t <docker_account>/first_docker_image .
+
+    - name: push docker iamge
+      command: docker push <docker_account>/first_docker_image

@@ -1,0 +1,7 @@
+---
+- hosts: webservers
+  gather_facts: yes
+  tasks:
+   
+    - name: Running docker image as a container
+      command: docker build -d --name myproj -p 8888:8080 <docker_hub_account>/first_docker_image:version

@@ -1,0 +1,27 @@
+---
+- name: Docker installation 
+  hosts: webservers
+  become: yes
+  become_user: root
+
+  tasks:
+
+    - name: update ec2 instance
+      yum:
+        name: "*"
+        state: latest
+        update_cache: yes
+
+    - name: install Docker 
+      yum: 
+        name: docker 
+        state: latest
+
+    - name: adding user to docker group
+      shell: sudo usermod -a -G docker ec2-user
+    
+    - name: Enable docker service at AMI boot time
+      shell: sudo systemctl enable docker.service
+
+    - name: Start the Docker service
+      shell: sudo systemctl start docker.service     
