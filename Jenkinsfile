@@ -17,7 +17,7 @@ pipeline {
     environment {
 
         GIT_CREDENTIALS_ID = 'anji_git_hub_acct'
-        SOURCE_GIT_REPO = 'https://github.com/Techsoultions/IndustryGrade_Project.git'
+        SOURCE_GIT_REPO = 'https://github.com/Techsoultions/Sample_Project.git'
         BUILD_NUM = "${BUILD_ID}"
     
     }
