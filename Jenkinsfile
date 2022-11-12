@@ -50,31 +50,12 @@ pipeline {
         {
             steps{
                 script{
-                   sh " docker build -t anjidockerid/abc-org:${BUILD_NUM} . "
+
+                   ansiblePlaybook become: true, installation: 'ansible', inventory: 'Ansible_play_books/invent.iti', playbook: 'Ansible_play_books/docker_image_creation_in_asnisblenode.yml'
                 }
             }
 
         }
-        stage('Pushing docker iamge - docker hub')
-        {
-            steps{
-                script{
-                    withCredentials([usernamePassword(credentialsId: 'DockerId', passwordVariable: 'docker_pwd', usernameVariable: 'docker_id')]) {
-                     sh "docker login -u ${docker_id} -p ${docker_pwd}"
-                     sh "docker push anjidockerid/abc-org:${BUILD_NUM}"   
-                    }
-                }
-            }
-
-        }
-        /*stage('Removing the local docker images')
-        {
-            steps{
-                script{
-                sh ' docker rmi -f $(docker images -aq) '
-                }
-            }
-        }*/
         
     }
 
