@@ -51,7 +51,8 @@ pipeline {
             steps{
                 script{
 
-                   ansiblePlaybook become: true, installation: 'ansible', inventory: 'Ansible_play_books/invent.iti', playbook: 'Ansible_play_books/docker_image_creation_in_asnisblenode.yml'
+                   sh " ansible-playbook Ansible_play_books/docker_image_creation_in_asnisblenode.yml "
+                   //ansiblePlaybook become: true, installation: 'ansible', inventory: 'Ansible_play_books/invent.iti', playbook: 'Ansible_play_books/docker_image_creation_in_asnisblenode.yml'
                 }
             }
 
