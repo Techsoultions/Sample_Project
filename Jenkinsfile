@@ -57,6 +57,17 @@ pipeline {
             }
 
         }
+        stage('Running container in host')
+        {
+            steps{
+                script{
+
+                   sh " ansible-playbook Ansible_play_books/Dockercontainer-run.yml -i Ansible_play_books/inventory.iti "
+                   //ansiblePlaybook become: true, installation: 'ansible', inventory: 'Ansible_play_books/invent.iti', playbook: 'Ansible_play_books/docker_image_creation_in_asnisblenode.yml'
+                }
+            }
+
+        }        
         
     }
 
